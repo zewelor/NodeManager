@@ -62,7 +62,7 @@ public:
 			// read the temperature
 			float temperature = _bm->readTemperature();
 			// convert it
-			temperature = nodeManager.celsiusToFahrenheit(temperature);
+			// temperature = nodeManager.celsiusToFahrenheit(temperature);
 			// store the value
 			child->setValue(temperature);
 		}
