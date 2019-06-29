@@ -41,14 +41,14 @@ public:
 		setInterruptMode(CHANGE);
 	};
 
-	// [105] Invert the value to report. E.g. if FALLING and value is LOW, report HIGH (default: false) 
+	// [105] Invert the value to report. E.g. if FALLING and value is LOW, report HIGH (default: false)
 	void setInvertValueToReport(bool value) {
 		_invert_value_to_report = value;
 	};
 #if NODEMANAGER_TIME == ON
 	// [107] when keeping track of the time, trigger only after X consecutive interrupts within the same minute (default: 1)
 	void setThreshold(int value) {
-		_threshold = value;      
+		_threshold = value;
 	};
 #endif
 
@@ -89,6 +89,11 @@ public:
 #endif
 		child->setValue(value);
 	};
+
+	// define what to do during loop
+	void onLoop(Child* child) {
+		onInterrupt();
+	}
 
 #if NODEMANAGER_OTA_CONFIGURATION == ON
 	// define what to do when receiving an OTA configuration request
