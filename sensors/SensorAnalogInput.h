@@ -27,10 +27,10 @@ class SensorAnalogInput: public Sensor {
 protected:
 	int _reference = -1;
 	bool _reverse = false;
-	bool _output_percentage = true;
+	// bool _output_percentage = true;
 	int _range_min = 0;
 	int _range_max = 1024;
-	
+
 public:
 	SensorAnalogInput(int8_t pin, uint8_t child_id = 0): Sensor(pin) {
 		_name = "ANALOG_I";
@@ -49,9 +49,9 @@ public:
 	};
 
 	// [103] when true returns the value as a percentage (default: true)
-	void setOutputPercentage(bool value) {
-		_output_percentage = value;
-	};
+	// void setOutputPercentage(bool value) {
+	// 	_output_percentage = value;
+	// };
 
 	// [104] minimum value for calculating the percentage (default: 0)
 	void setRangeMin(int value) {
@@ -73,10 +73,10 @@ public:
 		// read the input
 		int adc = _getAnalogRead();
 		// calculate the percentage
-		int percentage = 0;
-		if (_output_percentage) percentage = _getPercentage(adc);
+		// int percentage = 0;
+		// if (_output_percentage) percentage = _getPercentage(adc);
 		// store the result
-		child->setValue(_output_percentage ? percentage : adc);
+		child->setValue(adc);
 	};
 
 #if NODEMANAGER_OTA_CONFIGURATION == ON
@@ -106,7 +106,7 @@ protected:
 		if (percentage < 0) percentage = 0;
 		return (int)percentage;
 	};
-	
+
 	// read the analog input
 	int _getAnalogRead() {
 #ifdef CHIP_AVR
