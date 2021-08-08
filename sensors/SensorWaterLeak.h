@@ -16,27 +16,22 @@
 * modify it under the terms of the GNU General Public License
 * version 2 as published by the Free Software Foundation.
 */
-#ifndef PowerManager_h
-#define PowerManager_h
+#ifndef SensorWaterLeak_h
+#define SensorWaterLeak_h
 
-/******************************************
-PowerManager: helper class to power sensors on-demand through the board's pins
+/*
+* SensorWaterLeak
 */
 
-class PowerManager {
-public:
-	PowerManager(int8_t ground_pin, int8_t vcc_pin, unsigned long wait_time = 50);
-	// to save battery the sensor can be optionally connected to two pins which will act as vcc and ground and activated on demand
-	virtual void setPowerPins(int8_t ground_pin, int8_t vcc_pin, unsigned long wait_time = 50);
-	// if enabled the pins will be automatically powered on while awake and off during sleeping
-	// turns the power pins on
-	virtual void powerOn();
-	// turns the power pins on
-	virtual void powerOff();
-protected:
-	int8_t _vcc_pin = -1;
-	int8_t _ground_pin = -1;
-	unsigned long _wait = 0;
-};
+#include "SensorInterrupt.h"
 
+class SensorWaterLeak: public SensorInterrupt {
+public:
+	SensorWaterLeak(int8_t pin, uint8_t child_id = 0): SensorInterrupt(pin, child_id) {
+		_name = "WATER_LEAK";
+		children.get()->setPresentation(S_WATER_LEAK);
+		children.get()->setType(V_TRIPPED);
+		children.get()->setDescription(_name);
+	};
+};
 #endif

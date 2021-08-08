@@ -23,7 +23,7 @@ Child	KEYWORD1
 ConfigurationRequest	KEYWORD1
 List	KEYWORD1
 PowerManager	KEYWORD1
-Timer	KEYWORD1
+InternalTimer	KEYWORD1
 
 # NodeManager functions
 
@@ -119,6 +119,7 @@ setSamplesInterval	KEYWORD2
 setSaveSleepSettings	KEYWORD2
 setSetupHook	KEYWORD2
 setSleepBetweenSend	KEYWORD2
+setSleepBetweenSendSleepOrWait KEYWORD2
 setSleepDays	KEYWORD2
 setSleepHours	KEYWORD2
 setSleepInterruptPin	KEYWORD2
@@ -220,3 +221,6 @@ SensorPN532	KEYWORD1
 SensorCCS811	KEYWORD1
 SensorMPR121	KEYWORD1
 SensorGSM	KEYWORD1
+SensorWaterLeak	KEYWORD1
+SensorIRremote  KEYWORD1
+SensorParent  KEYWORD1

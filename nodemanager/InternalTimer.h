@@ -16,27 +16,38 @@
 * modify it under the terms of the GNU General Public License
 * version 2 as published by the Free Software Foundation.
 */
-#ifndef PowerManager_h
-#define PowerManager_h
+#ifndef Timer_h
+#define Timer_h
 
 /******************************************
-PowerManager: helper class to power sensors on-demand through the board's pins
+InternalTimer: helper class to keep track of the elapsed time
 */
 
-class PowerManager {
+class NodeManager;
+
+class InternalTimer {
 public:
-	PowerManager(int8_t ground_pin, int8_t vcc_pin, unsigned long wait_time = 50);
-	// to save battery the sensor can be optionally connected to two pins which will act as vcc and ground and activated on demand
-	virtual void setPowerPins(int8_t ground_pin, int8_t vcc_pin, unsigned long wait_time = 50);
-	// if enabled the pins will be automatically powered on while awake and off during sleeping
-	// turns the power pins on
-	virtual void powerOn();
-	// turns the power pins on
-	virtual void powerOff();
-protected:
-	int8_t _vcc_pin = -1;
-	int8_t _ground_pin = -1;
-	unsigned long _wait = 0;
+	InternalTimer();
+	void setMode(nm_timer_mode mode);
+	nm_timer_mode getMode();
+	void setValue(unsigned long value);
+	unsigned long getValue();
+	// start the timer
+	void start();
+	// stop the timer
+	void stop();
+	// update the timer so to keep track of the exact elapsed timeframe
+	void update();
+	// return true if the time is over
+	bool isOver();
+private:
+	nm_timer_mode _mode = NOT_CONFIGURED;
+	unsigned long _value = 0;  // s
+	unsigned long _target = 0;  // ms
+	bool _is_running = false;
+#if NODEMANAGER_TIME == ON
+	bool _already_reported = false;
+#endif
 };
 
 #endif

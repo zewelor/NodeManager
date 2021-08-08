@@ -16,57 +16,64 @@
 * modify it under the terms of the GNU General Public License
 * version 2 as published by the Free Software Foundation.
 */
-#ifndef SensorDHT_h
-#define SensorDHT_h
+#ifndef SensorAHT10_h
+#define SensorAHT10_h
 
 /*
-SensorDHT
+SensorAHT10: temperature and humidity sensor
 */
 
-#include <DHT.h>
+#include <Wire.h>
+#include <AHT10.h>
 
-class SensorDHT: public Sensor {
-	
+class SensorAHT10: public Sensor {
 protected:
-	DHT* _dht;
-	int _dht_type;
-	float _offset = 0;
-	
+	AHT10* _aht10;
+
 public:
-	SensorDHT(int8_t pin, uint8_t child_id = 0): Sensor(pin) {
-		_name = "DHT";
-		_dht_type = DHT::DHT11;
+	SensorAHT10(uint8_t child_id = 0): Sensor(-1) {
+		_name = "AHT10";
 		children.allocateBlocks(2);
 		new Child(this,FLOAT,nodeManager.getAvailableChildId(child_id),S_TEMP,V_TEMP,_name);
 		new Child(this,FLOAT,child_id > 0 ? nodeManager.getAvailableChildId(child_id+1) : nodeManager.getAvailableChildId(child_id),S_HUM,V_HUM,_name);
 	};
-
-	// define what to do during setup
-	void onSetup() {
-		// store the dht object
-		_dht = new DHT();
-		// initialize the dht library
-		_dht->setup(_pin,(DHT::DHT_MODEL_t)_dht_type);
-	};
 	
-	// define what to do during setup
+	// what to do during setup
+	void onSetup() {
+
+		_aht10 = new AHT10(AHT10_ADDRESS_0X38);
+
+		if (_aht10->begin() != true)
+  	{
+			setIndication(INDICATION_ERR_HW_INIT);
+			debug(PSTR(LOG_SETUP "AHT10 not connected or fail to load calibration coefficient\n"));
+  	  //sleep(5000);
+  	}
+	};
+
+	// what to do during loop
 	void onLoop(Child* child) {
-		nodeManager.sleepOrWait(_dht->getMinimumSamplingPeriod()+100);
-		// _dht->readSensor(true);
 		// temperature sensor
 		if (child->getType() == V_TEMP) {
 			// read the temperature
-			float temperature = _dht->getTemperature();
-			if (!nodeManager.getIsMetric()) temperature = _dht->toFahrenheit(temperature);
-			// store the value
-			child->setValue(temperature);
+			float temperature = _aht10->readTemperature();
+			if (temperature != AHT10_ERROR )
+			{
+				// convert it
+				temperature = nodeManager.celsiusToFahrenheit(temperature);
+				// store the value
+				child->setValue(temperature);
+			}
 		}
-		// humidity sensor
+		// Humidity Sensor
 		else if (child->getType() == V_HUM) {
 			// read humidity
-			float humidity = _dht->getHumidity();
-			// store the value
-			child->setValue(humidity);
+			float humidity = _aht10->readHumidity();
+			if (humidity != AHT10_ERROR )
+			{
+				// store the value
+				child->setValue(humidity);
+			}
 		}
 	};
 };

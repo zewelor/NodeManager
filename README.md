@@ -91,28 +91,30 @@ SensorLDR                | 1     | LDR sensor, return the light level of an atta
 SensorRain               | 1     | Rain sensor, return the percentage of rain from an attached analog sensor                         | -
 SensorSoilMoisture       | 1     | Soil moisture sensor, return the percentage of moisture from an attached analog sensor            | -
 SensorThermistor         | 1     | Thermistor sensor, return the temperature based on the attached thermistor                        | -
-SensorTMP102         		 | 1     | Temperature sensor, return the temperature based on the TMP102 sensor		                         | https://github.com/Yannicked/Sensor_TMP102
+SensorTMP102             | 1     | Temperature sensor, return the temperature based on the TMP102 sensor	                         | https://github.com/Yannicked/Sensor_TMP102
 SensorML8511             | 1     | ML8511 sensor, return UV intensity                                                                | -
 SensorACS712             | 1     | ACS712 sensor, measure the current going through the attached module                              | -
+SensorACS712_AC          | 1     | ACS712, same as the above, but allows measuring alternating current         | -
 SensorDigitalInput       | 1     | Generic digital sensor, return a pin's digital value                                              | -
 SensorDigitalOutput      | 1     | Generic digital output sensor, allows setting the digital output of a pin to the requested value  | -
 SensorRelay              | 1     | Relay sensor, allows activating the relay                                                         | -
 SensorLatchingRelay1Pin  | 1     | Latching Relay sensor, allows toggling the relay with a pulse on the configured pin               | -
 SensorLatchingRelay2Pins | 1     | Latching Relay sensor, allows turing the relay on and off with a pulse on the configured pins     | -
-SensorDHT11              | 2     | DHT11 sensor, return temperature/humidity based on the attached DHT sensor                        | https://github.com/mysensors/MySensorsArduinoExamples/tree/master/libraries/DHT
-SensorDHT22              | 2     | DHT22 sensor, return temperature/humidity based on the attached DHT sensor                        | https://github.com/mysensors/MySensorsArduinoExamples/tree/master/libraries/DHT
+SensorDHT11              | 2     | DHT11 sensor, return temperature/humidity based on the attached DHT sensor                        | https://github.com/markruys/arduino-DHT
+SensorDHT22              | 2     | DHT22 sensor, return temperature/humidity based on the attached DHT sensor                        | https://github.com/markruys/arduino-DHT
 SensorSHT21              | 2     | SHT21 sensor, return temperature/humidity based on the attached SHT21 sensor                      | https://github.com/SodaqMoja/Sodaq_SHT2x
 SensorHTU21D             | 2     | HTU21D sensor, return temperature/humidity based on the attached HTU21D sensor                    | https://github.com/SodaqMoja/Sodaq_SHT2x
+SensorAHT10              | 2     | AHT10 sensor, return temperature/humidity based on the attached AHT10 sensor                      | https://github.com/enjoyneering/AHT10
 SensorInterrupt          | 1     | Generic interrupt-based sensor, wake up the board when a pin changes status                       | -
 SensorDoor               | 1     | Door sensor, wake up the board and report when an attached magnetic sensor has been opened/closed | -
 SensorMotion             | 1     | Motion sensor, wake up the board and report when an attached PIR has triggered                    | -
 SensorDs18b20            | 1+    | DS18B20 sensor, return the temperature based on the attached sensor                               | https://github.com/milesburton/Arduino-Temperature-Control-Library
 SensorBH1750             | 1     | BH1750 sensor, return light level in lux                                                          | https://github.com/claws/BH1750
 SensorMLX90614           | 2     | MLX90614 contactless temperature sensor, return ambient and object temperature                    | https://github.com/adafruit/Adafruit-MLX90614-Library
-SensorBME280             | 4     | BME280 sensor, return temperature/humidity/pressure based on the attached BME280 sensor           | https://github.com/adafruit/Adafruit_BME280_Library
-SensorBMP085             | 3     | BMP085 sensor, return temperature and pressure                                                    | https://github.com/adafruit/Adafruit-BMP085-Library
-SensorBMP180             | 3     | BMP180 sensor, return temperature and pressure                                                    | https://github.com/adafruit/Adafruit-BMP085-Library
-SensorBMP280             | 3     | BMP280 sensor, return temperature/pressure based on the attached BMP280 sensor                    | https://github.com/adafruit/Adafruit_BMP280_Library
+SensorBME280             | 4     | BME280 sensor, return temperature/humidity/pressure based on the attached BME280 sensor           | https://github.com/adafruit/Adafruit_BME280_Library / https://github.com/adafruit/Adafruit_Sensor
+SensorBMP085             | 3     | BMP085 sensor, return temperature and pressure                                                    | https://github.com/adafruit/Adafruit-BMP085-Library / https://github.com/adafruit/Adafruit_Sensor
+SensorBMP180             | 3     | BMP180 sensor, return temperature and pressure                                                    | https://github.com/adafruit/Adafruit-BMP085-Library / https://github.com/adafruit/Adafruit_Sensor
+SensorBMP280             | 3     | BMP280 sensor, return temperature/pressure based on the attached BMP280 sensor                    | https://github.com/adafruit/Adafruit_BMP280_Library / https://github.com/adafruit/Adafruit_Sensor
 SensorSonoff             | 1     | Sonoff wireless smart switch                                                                      | https://github.com/thomasfredericks/Bounce2
 SensorHCSR04             | 1     | HC-SR04 sensor, return the distance between the sensor and an object                              | https://github.com/mysensors/MySensorsArduinoExamples/tree/master/libraries/NewPing
 SensorMCP9808            | 1     | MCP9808 sensor, measure the temperature through the attached module                               | https://github.com/adafruit/Adafruit_MCP9808_Library
@@ -147,6 +149,10 @@ SensorPN532              | 1     | PN532 NFC RFID Module                        
 SensorCCS811             | 1     | CCS811 gas/Air Quality sensor. Measure VOC and eCO2                                               | https://github.com/adafruit/Adafruit_CCS811
 SensorMPR121             | 1     | MPR121-based capacitive touch control sensor                                                      | https://github.com/adafruit/Adafruit_MPR121
 SensorGSM                | 1     | Send SMS through an attached serial modem (e.g. SIM900)                                           | -
+SensorWaterLeak          | 1     | Water leak sensor; via an interrupt, wake up the board and report when a leak is detected         | -
+SensorIRremote           | 1     | Send signals to infrared devices through an attached IR sensor                                    | https://github.com/z3t0/Arduino-IRremote / https://github.com/crankyoldgit/IRremoteESP8266
+SensorParent             | 1     | A dummy sensor that reports parent node id. Useful for mapping the network         | -
+
 
 Those sensors requiring a pin to operate would take it as an argument in the constructor.
 NodeManager automatically creates all the child_ids, assigning an incremental counter. If you need to set your own child_id, pass it as the last argument to the constructor
@@ -274,7 +280,7 @@ You can interact with each class provided by NodeManager through a set of API fu
 	void registerSensor(Sensor* sensor);
 #if NODEMANAGER_SLEEP == ON
 	// register a timer
-	void registerTimer(Timer* timer);
+	void registerTimer(InternalTimer* timer);
 #endif
 	// return the next-available child id
 	uint8_t getAvailableChildId(uint8_t child_id = 0);
@@ -288,6 +294,10 @@ You can interact with each class provided by NodeManager through a set of API fu
 	void sleepBetweenSend();
 	// set the analog reference to the given value and optionally perform some fake reading on the given pin
 	void setAnalogReference(uint8_t value, uint8_t pin = -1);
+	// send the configured unit prefix just before sending the first measure (default: false)
+	void setSendUnitPrefix(bool value);
+	// return the default unit prefix for the given sensor presentation and type
+	const char* getDefaultUnitPrefix(uint8_t presentation, uint8_t type);
 #if NODEMANAGER_SLEEP == ON
 	// [3] set the duration (in seconds) of a sleep cycle
 	void setSleepSeconds(unsigned long value);
@@ -300,6 +310,8 @@ You can interact with each class provided by NodeManager through a set of API fu
 	void setSleepDays(uint8_t value);
 	// [20] optionally sleep interval in milliseconds before sending each message to the radio network (default: 0)
 	void setSleepBetweenSend(unsigned int value);
+	// [43] when sleep between send is set, by default the node will only wait, set it to true to make it sleeping for long intervals (default: false)
+	void setSleepBetweenSendSleepOrWait(bool value);
 	// [9] wake up the board
 	void wakeup();
 	// use smart sleep for sleeping boards (default: true)
@@ -316,6 +328,8 @@ You can interact with each class provided by NodeManager through a set of API fu
 	int8_t getLastInterruptPin();
 	// return the value of the pin from which the last interrupt came
 	int8_t getLastInterruptValue();
+	// setup the interrupt pins
+	void setupInterrupts(bool from_setup);
 #endif
 #if NODEMANAGER_POWER_MANAGER == ON
 	// configure a PowerManager common to all the sensors
@@ -336,6 +350,9 @@ You can interact with each class provided by NodeManager through a set of API fu
 	void saveToMemory(int index, int value);
 	// [40] if set save the sleep settings in memory, also when changed remotely (default: false)
 	void setSaveSleepSettings(bool value);
+	// keep track in the eeprom of enabled/disabled status for each sensor (default: false)
+	void setPersistEnabledSensors(bool value);
+	bool getPersistEnabledSensors();
 #endif
 #if NODEMANAGER_TIME == ON
 	// [41] synchronize the local time with the controller
@@ -404,6 +421,9 @@ The following methods are available for all the sensors:
 	Child* getChild(uint8_t child_id);
 	// register a child
 	void registerChild(Child* child);
+	// [28] enabler/disable the sensor (default: true)
+	void setEnabled(bool value, bool just_set = false);
+	bool getEnabled();
 #if NODEMANAGER_INTERRUPTS == ON
 	// return the pin the interrupt is attached to
 	int8_t getInterruptPin();
@@ -462,7 +482,7 @@ The following methods are available for all the sensors:
 
 The following methods are available for all the child:
 ~~~c
-	Child(Sensor* sensor, value_format format, uint8_t child_id, uint8_t presentation, uint8_t type, const char* description = "");
+	Child(Sensor* sensor, value_format format, uint8_t child_id, uint8_t presentation, uint8_t type, const char* description = "", const char* unit_prefix = "", , bool request_initial_value = false);
 	// set child id used to communicate with the gateway/controller
 	void setChildId(uint8_t value);
 	uint8_t getChildId();
@@ -502,6 +522,9 @@ The following methods are available for all the child:
 	void print(Print& device);
 	// reset all the counters
 	void reset();
+	// if set request the controller the initial value of this child (default: false)
+	void setRequestInitialValue(bool value);
+	bool getRequestInitialValue();
 #if NODEMANAGER_CONDITIONAL_REPORT == ON
 	// force to send an update after the configured number of minutes
 	void setForceUpdateTimerValue(unsigned long value);
@@ -613,6 +636,23 @@ Each sensor class may expose additional methods.
 	void computeACNoise();
 ~~~
 
+* SensorACS712_AC
+~~~c
+	// [101] set how many mV are equivalent to 1 Amp. The value depends on the module (185 for 5A Module, 100 for 20A Module, 66 for 30A Module) (default: 185);
+	void setmVPerAmp(int value);
+	// [102] set ACS offset (default: 2500);
+	void setOffset(int value);
+	// [103] set AC Measurement mode
+	void setACMode(bool value);
+	// [104] set AC noise
+	void setACNoise(int value);
+	// [105] Adjust AC noise
+	void computeACNoise();
+	// Performs initial calibration. Call this function once when there is no
+	// current flowing through the sensor. 
+	void calibrateZero();
+~~~
+
 * SensorDigitalInput
 ~~~c
 	// Invert the value to report. E.g. report 1 if value is LOW, report 0 if HIGH (default: false)
@@ -643,7 +683,7 @@ Each sensor class may expose additional methods.
     void toggleStatus(int value);
 ~~~
 
-*  SensorInterrupt / SensorDoor / SensorMotion
+*  SensorInterrupt / SensorDoor / SensorMotion / SensorWaterLeak
 ~~~c
     // [105] Invert the value to report. E.g. if FALLING and value is LOW, report HIGH (default: false)
     void setInvertValueToReport(bool value);
@@ -1136,6 +1176,7 @@ Create a branch for the fix/feature you want to work on and apply changes to the
 * Include all the files changed for your commit: `git add .`
 * Commit the changes: `git  commit -m"Use enum instead of define for defining each sensor #121"`
 * Push the branch with the changes to your repository: `git push origin <yourbranch>`
+* A compilation test under Github Actions should trigger, wait for the results to ensure your changes are still making the code compiling successfully
 * Visit `https://github.com/<username>/NodeManager/branches` and click the "New pull request" button just aside your newly created branch
 * Fill in the request with a significant title and description and select the "development" branch (this step is very important)
 * Submit the request and start the discussion. After a few seconds, the configured Continuous Integration tool will automatically compile your code and check for errors
@@ -1155,17 +1196,15 @@ If there are changes introduced to the development branch that conflicts with an
 When contributing with a new sensor follows the same guidelines presented above and proceed with the following steps:
 * Define your class is in a header file named `SensorNAME_OF_THE_SENSOR.h` under the `sensors` directory
 * Implement your sensor inline with the class. See `SensorExample.h` or other sensors for more commented examples and details
-* Add your sensor in `examples/Templates/Template.ino`, just after the last sensor
-* Add an additional job in the Travis CI configuration file `.travis.yml`
+* Add your sensor in `examples/Templates/Template.ino`, just after the last sensor. Ensure your lines are commented out, like the other sensors
+* Add an additional step for the CI/CD pipeline configured in `.github/workflows/test.yml` for testing out your new code taking inspiration from other sensors. The code has to create a new sketch out of the template and uncomment the lines required for your new sensor to be tested
 * Add the sensor's specs in "Add your sensors" and in "Built-in sensors API" of the README.md file
 * Add the name of the class of your sensor in the keywords.txt file
 
 ## Compatibility
 
 This version of NodeManager has been tested and is compatible with the following MySensors library:
-* v2.3.0
-* v2.2.0
-* v2.1.1
+* v2.3.2
 
 You don't necessarily need a NodeManager gateway to interact with a NodeManager node. A NodeManager node is fully compatible with any existing gateway you are currently operating with.
 

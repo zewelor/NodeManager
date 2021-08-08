@@ -37,7 +37,7 @@ enum status {
 };
 
 //define Timer mode
-enum timer_mode {
+enum nm_timer_mode {
 	NOT_CONFIGURED,
 	TIME_INTERVAL,
 	IMMEDIATELY,
@@ -85,10 +85,10 @@ Chip type
 #if defined (__AVR_ATtiny25__) || defined(__AVR_ATtiny45__) || defined(__AVR_ATtiny85__)
 #define CHIP_TINYX5
 #endif
-#if defined(__AVR_ATmega32U4__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
+#if defined(__AVR_ATmega32U4__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__) || defined(__AVR_ATmega1284__) || defined(__AVR_ATmega1284P__) || defined(__AVR_ATmega644__) || defined(__AVR_ATmega644A__) || defined(__AVR_ATmega644P__) || defined(__AVR_ATmega644PA__)
 #define CHIP_MEGA
 #endif
-#if defined(ARDUINO_ARCH_STM32F0) || defined(ARDUINO_ARCH_STM32F1) || defined(ARDUINO_ARCH_STM32F3) || defined(ARDUINO_ARCH_STM32F4) || defined(ARDUINO_ARCH_STM32L4)
+#if defined(ARDUINO_ARCH_STM32F0) || defined(ARDUINO_ARCH_STM32F1) || defined(ARDUINO_ARCH_STM32F3) || defined(ARDUINO_ARCH_STM32F4) || defined(ARDUINO_ARCH_STM32L4) || defined(ARDUINO_ARCH_STM32)
 #define CHIP_STM32
 #endif
 #if defined(ESP8266) || defined(MY_GATEWAY_ESP8266)
@@ -100,22 +100,19 @@ Chip type
 #if defined (MYBOARDNRF5) || defined(NRF51) || defined(NRF52)
 #define CHIP_NRF5
 #endif
-#if !defined(CHIP_ESP8266) && !defined(CHIP_ESP32) && !defined(CHIP_STM32) && !defined(CHIP_NRF5)
+#if defined (SAMD_SERIES)
+#define CHIP_SAMD
+#endif
+#if !defined(CHIP_ESP8266) && !defined(CHIP_ESP32) && !defined(CHIP_STM32) && !defined(CHIP_NRF5) && !defined(CHIP_SAMD)
 #define CHIP_AVR
 #endif
 
 // define interrupt pins
-
-#if defined(CHIP_STM32)
-#define INTERRUPT_PIN_1 PB8
-#define INTERRUPT_PIN_2 2
-#else
 #ifndef INTERRUPT_PIN_1
 #define INTERRUPT_PIN_1 3
 #endif
 #ifndef INTERRUPT_PIN_2
 #define INTERRUPT_PIN_2 2
-#endif
 #endif
 
 // define eeprom addresses

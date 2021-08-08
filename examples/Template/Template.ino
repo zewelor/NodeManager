@@ -36,7 +36,7 @@ NodeManager. Just uncomment the settings you need and the sensors you want to ad
 //#define MY_NODE_ID 99
 
 // NRF24 radio settings
-#define MY_RADIO_NRF24
+#define MY_RADIO_RF24
 //#define MY_RF24_ENABLE_ENCRYPTION
 //#define MY_RF24_CHANNEL 125
 //#define MY_RF24_PA_LEVEL RF24_PA_HIGH
@@ -121,8 +121,8 @@ NodeManager. Just uncomment the settings you need and the sensors you want to ad
 
 // ESP8266 gateway settings
 //#define MY_GATEWAY_ESP8266
-//#define MY_ESP8266_SSID ""
-//#define MY_ESP8266_PASSWORD ""
+//#define MY_WIFI_SSID ""
+//#define MY_WIFI_PASSWORD ""
 
 // Gateway networking settings
 //#define MY_IP_ADDRESS 192,168,178,87
@@ -259,6 +259,7 @@ NodeManager. Just uncomment the settings you need and the sensors you want to ad
 //#include <sensors/SensorMLX90614.h>
 //SensorMLX90614 mlx90614;
 
+//#define NODEMANAGER_SENSOR_BOSCH_LITE
 //#include <sensors/SensorBME280.h>
 //SensorBME280 bme280;
 
@@ -369,6 +370,22 @@ NodeManager. Just uncomment the settings you need and the sensors you want to ad
 
 //#include <sensors/SensorGSM.h>
 //SensorGSM gsm(6,7);
+
+//#include <sensors/SensorWaterLeak.h>
+//SensorWaterLeak waterLeak(3);
+
+//#include <sensors/SensorIRremote.h>
+//unsigned int irSignal[59] = {8250,4150, 550,1600, 500,550, 500,600, 500,550, 500,1650, 500,550, 500,550, 550,550, 500,550, 500,600, 500,550, 500,550, 550,550, 500,550, 500,600, 500,550, 500,1650, 500,550, 550,550, 500,550, 500,550, 500,600, 500,550, 500,600, 500,1600, 500,600, 500,550, 500,550, 550}; 
+//SensorIRremote remote(irSignal);
+
+//#include <sensors/SensorAHT10.h>
+//SensorAHT10 aht10;
+
+//#include <sensors/SensorParent.h>
+//SensorParent parent(254);
+
+//#include <sensors/SensorACS712_AC.h>
+//SensorACS712_AC ac(A0);
 
 /***********************************
  * Main Sketch

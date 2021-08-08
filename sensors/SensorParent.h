@@ -16,38 +16,26 @@
 * modify it under the terms of the GNU General Public License
 * version 2 as published by the Free Software Foundation.
 */
-#ifndef Timer_h
-#define Timer_h
+#ifndef SensorParent_h
+#define SensorParent_h
 
-/******************************************
-Timer: helper class to keep track of the elapsed time
+/*
+SensorParent: report parent node to the gateway
 */
-
-class NodeManager;
-
-class Timer {
+class SensorParent: public Sensor {
 public:
-	Timer();
-	void setMode(timer_mode mode);
-	timer_mode getMode();
-	void setValue(unsigned long value);
-	unsigned long getValue();
-	// start the timer
-	void start();
-	// stop the timer
-	void stop();
-	// update the timer so to keep track of the exact elapsed timeframe
-	void update();
-	// return true if the time is over
-	bool isOver();
-private:
-	timer_mode _mode = NOT_CONFIGURED;
-	unsigned long _value = 0;  // s
-	unsigned long _target = 0;  // ms
-	bool _is_running = false;
-#if NODEMANAGER_TIME == ON
-	bool _already_reported = false;
-#endif
+	SensorParent(uint8_t child_id = 254): Sensor(-1) {
+		_name = "PARENT";
+		children.allocateBlocks(1);
+		new Child(this,INT,child_id, S_CUSTOM,V_VAR1,_name);
+		setReportIntervalMinutes(60);
+	};
+		
+	// define what to do during loop
+	void onLoop(Child* child) {
+		int16_t value = transportGetParentNodeId();
+		child->setValue(value);
+	};
 };
 
 #endif
